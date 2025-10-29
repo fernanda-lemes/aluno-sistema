@@ -91,7 +91,7 @@ public class AlunoController {
         return "visualizar";
     }
 
-    @DeleteMapping("/excluir/{id}")
+    @PostMapping("/excluir/{id}")
     public String excluir(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         Optional<Aluno> aluno = alunoService.buscarPorId(id);
         if (aluno.isEmpty()) {

@@ -28,7 +28,6 @@
             <a href="/alunos" class="btn btn-secondary">Voltar</a>
             <a th:href="@{/alunos/editar/{id}(id=${aluno.id})}" class="btn btn-warning">Editar</a>
             <form th:action="@{/alunos/excluir/{id}(id=${aluno.id})}" method="post" th:onsubmit="return confirm('Confirmar exclusão?');" style="display:inline">
-                <input type="hidden" name="_method" value="delete"/>
                 <button type="submit" class="btn btn-danger">Excluir</button>
             </form>
         </div>

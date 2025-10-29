@@ -19,6 +19,8 @@
             <h4 class="mb-0">Lista de Alunos</h4>
         </div>
         <div class="card-body">
+            <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+            <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
             <table class="table table-striped align-middle">
                 <thead>
                 <tr>
@@ -40,11 +42,28 @@
                     <td>
                         <a th:href="@{/alunos/visualizar/{id}(id=${aluno.id})}" class="btn btn-info btn-sm">Ver</a>
                         <a th:href="@{/alunos/editar/{id}(id=${aluno.id})}" class="btn btn-warning btn-sm">Editar</a>
-                        <a th:href="@{/alunos/excluir/{id}(id=${aluno.id})}" class="btn btn-danger btn-sm">Excluir</a>
+                        <form th:action="@{/alunos/excluir/{id}(id=${aluno.id})}" method="post" th:onsubmit="return confirm('Confirmar exclusão?');" style="display:inline">
+                            <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                        </form>
                     </td>
                 </tr>
                 </tbody>
             </table>
+
+            <nav th:if="${page != null}">
+                <ul class="pagination mb-0">
+                    <li class="page-item" th:classappend="${page.first} ? 'disabled'">
+                        <a class="page-link" th:href="@{/alunos(page=${page.number - 1}, size=${page.size})}">Anterior</a>
+                    </li>
+                    <li class="page-item" th:each="i : ${#numbers.sequence(0, page.totalPages - 1)}"
+                        th:classappend="${i} == ${page.number} ? 'active'">
+                        <a class="page-link" th:href="@{/alunos(page=${i}, size=${page.size})}" th:text="${i + 1}"></a>
+                    </li>
+                    <li class="page-item" th:classappend="${page.last} ? 'disabled'">
+                        <a class="page-link" th:href="@{/alunos(page=${page.number + 1}, size=${page.size})}">Próxima</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 </div>

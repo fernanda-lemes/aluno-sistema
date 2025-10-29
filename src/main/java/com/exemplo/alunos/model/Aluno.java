@@ -14,7 +14,6 @@ public class Aluno {
     @Column(nullable = false)
     private String nome;
     @NotBlank(message = "A matrícula é obrigatória")
-    @Pattern(regexp = "\\d+", message = "A matrícula deve conter apenas números")
     @Column(nullable = false, unique = true)
     private String matricula;
     @NotBlank(message = "O curso é obrigatório")

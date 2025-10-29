@@ -20,6 +20,8 @@
         </div>
 
         <div class="card-body">
+            <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+            <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
             <form th:action="@{/alunos}" th:object="${aluno}" method="post">
 
                 <div class="mb-3">
@@ -56,5 +58,16 @@
         </div>
     </div>
 </div>
+
+<script>
+    (function() {
+        var input = document.querySelector('input[name="matricula"]');
+        if (input) {
+            input.addEventListener('input', function () {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
+        }
+    })();
+</script>
 </body>
 </html>

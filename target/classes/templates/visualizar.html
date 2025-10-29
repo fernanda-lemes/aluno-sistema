@@ -18,6 +18,8 @@
             <h4 class="mb-0">Detalhes do Aluno</h4>
         </div>
         <div class="card-body">
+            <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+            <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
             <p><strong>ID:</strong> <span th:text="${aluno.id}"></span></p>
             <p><strong>Matrícula:</strong> <span th:text="${aluno.matricula}"></span></p>
             <p><strong>Nome:</strong> <span th:text="${aluno.nome}"></span></p>
@@ -25,6 +27,9 @@
             <p><strong>Curso:</strong> <span th:text="${aluno.curso}"></span></p>
             <a href="/alunos" class="btn btn-secondary">Voltar</a>
             <a th:href="@{/alunos/editar/{id}(id=${aluno.id})}" class="btn btn-warning">Editar</a>
+            <form th:action="@{/alunos/excluir/{id}(id=${aluno.id})}" method="post" th:onsubmit="return confirm('Confirmar exclusão?');" style="display:inline">
+                <button type="submit" class="btn btn-danger">Excluir</button>
+            </form>
         </div>
     </div>
 </div>

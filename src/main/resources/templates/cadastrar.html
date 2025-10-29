@@ -33,7 +33,7 @@
 
                 <div class="mb-3">
                     <label class="form-label">Matrícula</label>
-                    <input type="text" th:field="*{matricula}" class="form-control" inputmode="numeric" pattern="\\d+" placeholder="Somente números"
+                    <input type="text" th:field="*{matricula}" class="form-control"
                            th:classappend="${#fields.hasErrors('matricula')} ? 'is-invalid'">
                     <span class="text-danger" th:if="${#fields.hasErrors('matricula')}" th:errors="*{matricula}"></span>
                 </div>
